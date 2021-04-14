@@ -1,4 +1,4 @@
-from .demos.Agent_Based_Modeling.model import config
-from .demos.Agent_Based_Modeling.model.config import exp
+from demos.Agent_Based_Modeling.prey_predator_abm.model import config
+from demos.Agent_Based_Modeling.prey_predator_abm.model.config import exp
 
 client_modules = [config]
