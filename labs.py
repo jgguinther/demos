@@ -1,4 +1,6 @@
-from demos.Agent_Based_Modeling.prey_predator_abm.model import config
-from demos.Agent_Based_Modeling.prey_predator_abm.model.config import exp
+from pprint import pprint
+
+from demos.System_Dynamics.prey_predator_sd.model import config
+from demos.System_Dynamics.prey_predator_sd.model.config import exp
 
 client_modules = [config]
