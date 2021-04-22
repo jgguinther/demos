@@ -9,7 +9,7 @@ partial_state_update_block = [
             'eliminate_prey': eliminate_prey,
             'eliminate_predators': eliminate_predators
         },
-        'variables': {
+        'states': {
             'prey_population': prey_population,
             'predator_population': predator_population            
         }
