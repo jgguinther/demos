@@ -1,6 +1,5 @@
 from .parts.lotka_volterra import *
 
-
 partial_state_update_block = [
     {
         # lotka_volterra.py

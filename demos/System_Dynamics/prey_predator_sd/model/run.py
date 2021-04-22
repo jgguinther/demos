@@ -1,8 +1,6 @@
 import pandas as pd
-from model import config 
-from cadCAD.engine import ExecutionMode, ExecutionContext,Executor
-# from cadCAD import configs
-from demos.System_Dynamics.prey_predator_sd.model.config import exp
+from .config import *
+from cadCAD.engine import ExecutionMode, ExecutionContext, Executor
 
 
 def run():
