@@ -1,12 +1,11 @@
-import numpy as np
-from .utils import *
-
-
 # Behaviors
 def grow_food(params, substep, state_history, prev_state):
     """
     Increases the food supply in all sites, subject to an maximum.
     """
+    # 1st party
+    calculate_increment = prev_state['utils']['calculate_increment']
+
     regenerated_sites = calculate_increment(prev_state['sites'],
                                           params['food_growth_rate'],
                                           params['maximum_food_per_site'])

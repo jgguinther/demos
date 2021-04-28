@@ -1,4 +1,4 @@
-from demos.Agent_Based_Modeling.prey_predator_abm.model import config
+from cadCAD.configuration.utils import prep_modules
 from demos.Agent_Based_Modeling.prey_predator_abm.model.config import exp
 
-client_modules = [config]
+client_modules = prep_modules('demos/demos')

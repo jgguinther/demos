@@ -1,6 +1,7 @@
+from typing import Tuple, Dict, List
+
 import numpy as np
 import random
-from typing import *
 import uuid
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -40,6 +41,7 @@ def calculate_increment(value, growth_rate, max_value):
                  else max_value)
     return new_value
 
+
 # Location heper
 def check_location(position: tuple,
                    all_sites: np.matrix,
@@ -58,13 +60,17 @@ def check_location(position: tuple,
     return valid_sites
 
 
-def get_free_location(position: tuple,
+def get_free_location(check_location,
+                      position: tuple,
                       all_sites: np.matrix,
                       used_sites: List[tuple]) -> tuple:
     """
     Gets an random free location neighboring an position. Returns False if
     there aren't any location available.
     """
+    # 3rd Party
+    import random
+
     available_locations = check_location(position, all_sites, used_sites)
     if len(available_locations) > 0:
         return random.choice(available_locations)
@@ -72,7 +78,7 @@ def get_free_location(position: tuple,
         return False
 
 
-def nearby_agents(location: tuple, agents: Dict[str, dict]) -> Dict[str, dict]:
+def nearby_agents(is_neighbor, location: tuple, agents: Dict[str, dict]) -> Dict[str, dict]:
     """
     Filter the non-nearby agents.
     """
@@ -109,6 +115,7 @@ def aggregate_runs(df,aggregate_dimension):
     min_df = df.groupby(aggregate_dimension).min().reset_index()
 
     return mean_df,median_df,std_df,min_df
+
 
 def monte_carlo_plot(df,aggregate_dimension,x,y,runs):
     '''

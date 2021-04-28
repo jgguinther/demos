@@ -29,10 +29,11 @@ import numpy as np
 # Experiments
 from IPython.conftest import get_ipython
 
-from model import run
-from model.parts.utils import *
+from app.demos.Agent_Based_Modeling.prey_predator_abm.model import run
+from app.demos.Agent_Based_Modeling.prey_predator_abm.model.parts.utils import *
 pd.options.display.float_format = '{:.2f}'.format
 
+# ipykernel
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 df = run.run()

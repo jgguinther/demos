@@ -1,7 +1,3 @@
-from .utils import *
-import random
-from uuid import uuid4
-
 # Behaviors
 def digest_and_olden(params, substep, state_history, prev_state):
     agents = prev_state['agents']
@@ -10,16 +6,22 @@ def digest_and_olden(params, substep, state_history, prev_state):
     return {'agent_delta_food': delta_food,
           'agent_delta_age': delta_age}
 
+
 def move_agents(params, substep, state_history, prev_state):
     """
     Move agents.
     """
+    # 1st Party
+    get_free_location = prev_state['utils']['get_free_location']
+    check_location = prev_state['utils']['check_location']
+
     sites = prev_state['sites']
     agents = prev_state['agents']
+
     busy_locations = [agent['location'] for agent in agents.values()]
     new_locations = {}
     for label, properties in agents.items():
-        new_location = get_free_location(properties['location'], sites, busy_locations)
+        new_location = get_free_location(check_location, properties['location'], sites, busy_locations)
         if new_location is not False:
             new_locations[label] = new_location
             busy_locations.append(new_location)
@@ -27,13 +29,25 @@ def move_agents(params, substep, state_history, prev_state):
             continue
     return {'update_agent_location': new_locations}
 
+
 def reproduce_agents(params, substep, state_history, prev_state):
     """
     Generates an new agent through an nearby agent pair, subject to rules.
     Not done.
     """
+    # 3rd Party
+    import random
+    from uuid import uuid4
+
+    # 1st Party
+    get_free_location = prev_state['utils']['get_free_location']
+    nearby_agents = prev_state['utils']['nearby_agents']
+    is_neighbor = prev_state['utils']['is_neighbor']
+    check_location = prev_state['utils']['check_location']
+
     agents = prev_state['agents']
     sites = prev_state['sites']
+
     food_threshold = params['reproduction_food_threshold']
     reproduction_food = params['reproduction_food']
     reproduction_probability = params['reproduction_probability']
@@ -49,11 +63,11 @@ def reproduce_agents(params, substep, state_history, prev_state):
             location = agent_properties['location']
             if (agent_properties['food'] < food_threshold or agent_label in already_reproduced):
                 continue
-            kind_neighbors = nearby_agents(location, specific_agents)
+            kind_neighbors = nearby_agents(is_neighbor, location, specific_agents)
             available_partners = [label for label, agent in kind_neighbors.items()
                                   if agent['food'] >= food_threshold
                                   and label not in already_reproduced]
-            reproduction_location = get_free_location(location, sites, busy_locations)
+            reproduction_location = get_free_location(check_location, location, sites, busy_locations)
             
             if reproduction_location is not False and len(available_partners) > 0:
                 reproduction_partner_label = random.choice(available_partners)
@@ -69,6 +83,7 @@ def reproduce_agents(params, substep, state_history, prev_state):
                 new_agents[uuid4()] = new_agent_properties
                 busy_locations.append(reproduction_location)
     return {'agent_delta_food': agent_delta_food,'agent_create': new_agents}
+
 
 def feed_prey(params, substep, state_history, prev_state):
     """
@@ -92,13 +107,21 @@ def feed_prey(params, substep, state_history, prev_state):
             'site_delta_food': site_delta_food}
 
 
-
 def hunt_prey(params, substep, state_history, prev_state):
     """
     Feeds the hungry predators with an random nearby prey.
     """
+    # 3rd Party
+    import random
+
+    # 1st Party
+    nearby_agents = prev_state['utils']['nearby_agents']
+    is_neighbor = prev_state['utils']['is_neighbor']
+
+
     agents = prev_state['agents']
     sites = prev_state['sites']
+
     hungry_threshold = params['hunger_threshold']
     preys = {k: v for k, v in agents.items()
              if v['type'] == 'prey'}
@@ -109,7 +132,7 @@ def hunt_prey(params, substep, state_history, prev_state):
     agent_delta_food = {}
     for predator_label, predator_properties in hungry_predators.items():
         location = predator_properties['location']
-        nearby_preys = nearby_agents(location, preys)
+        nearby_preys = nearby_agents(is_neighbor, location, preys)
         if len(nearby_preys) > 0:
             eaten_prey_label = random.choice(list(nearby_preys.keys()))
             delta_food = preys.pop(eaten_prey_label)['food']
@@ -136,7 +159,6 @@ def natural_death(params, substep, state_history, prev_state):
     return {'remove_agents': agents_to_remove}
 
 
-
 # Mechanisms
 def agent_food_age(params, substep, state_history, prev_state, policy_input):
     delta_food_by_agent = policy_input['agent_delta_food']
@@ -149,11 +171,13 @@ def agent_food_age(params, substep, state_history, prev_state, policy_input):
         updated_agents[agent]['age'] += delta_age
     return ('agents', updated_agents)
 
+
 def agent_location(params, substep, state_history, prev_state, policy_input):
     updated_agents = prev_state['agents'].copy()
     for label, location in policy_input['update_agent_location'].items():
         updated_agents[label]['location'] = location
     return ('agents', updated_agents)
+
 
 def agent_create(params, substep, state_history, prev_state, policy_input):
     updated_agents = prev_state['agents'].copy()
@@ -170,6 +194,7 @@ def site_food(params, substep, state_history, prev_state, policy_input):
         updated_sites[label] += delta_food
     return ('sites', updated_sites)
 
+
 def agent_food(params, substep, state_history, prev_state, policy_input):
     updated_agents = prev_state['agents'].copy()
     for label, delta_food in policy_input['agent_delta_food'].items():
@@ -182,7 +207,3 @@ def agent_remove(params, substep, state_history, prev_state, policy_input):
     surviving_agents = {k: v for k, v in prev_state['agents'].items()
                         if k not in agents_to_remove}
     return ('agents', surviving_agents)
-
-
-
-

@@ -1,7 +1,8 @@
+import numpy as np
 import pandas as pd
-from .parts.utils import *
-from .config import *
+from ..model.config import exp
 from cadCAD.engine import ExecutionMode, ExecutionContext, Executor
+
 
 def run():
     '''

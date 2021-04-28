@@ -1,7 +1,8 @@
-from .parts.environment import *
 from .parts.agents import *
+from .parts.environment import *
+from app.demos.labs_utils import rename_psubs
 
-partial_state_update_block = [
+partial_state_update_block = rename_psubs([
     {
         # environment.py
         'policies': {
@@ -70,4 +71,4 @@ partial_state_update_block = [
             'agents': agent_remove
         }
     }
-]
+])
