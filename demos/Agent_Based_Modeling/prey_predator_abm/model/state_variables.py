@@ -1,7 +1,7 @@
 # Dependences
 from .parts.utils import *
 from .sys_params import initial_values
-from app.demos.labs_utils import rename_utils
+from cadCAD.configuration.utils import rename_utils
 
 utils = {
     'calculate_increment': calculate_increment,

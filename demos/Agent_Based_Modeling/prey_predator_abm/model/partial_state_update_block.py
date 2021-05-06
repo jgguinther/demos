@@ -1,6 +1,6 @@
 from .parts.agents import *
 from .parts.environment import *
-from app.demos.labs_utils import rename_psubs
+from cadCAD.configuration.utils import rename_psubs
 
 partial_state_update_block = rename_psubs([
     {
