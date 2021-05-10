@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
     ]
 
 setup(
-    name=model_dir,
+    name='pkg',
     version='0.0.0',
     package_dir={"": model_dir},
     packages=find_packages(where=model_dir),
