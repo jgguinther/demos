@@ -13,6 +13,7 @@ monkeytype.sqlite3
 
 build
 build.sh
+pkg.egg-info
 venv
 
 __pycache__

@@ -1,6 +1,4 @@
-import numpy as np
-from .utils import *
-
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.utils import calculate_increment
 
 # Behaviors
 def grow_food(params, substep, state_history, prev_state):

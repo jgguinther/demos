@@ -3,7 +3,6 @@ import random
 from typing import *
 import uuid
 import matplotlib.pyplot as plt
-import pandas as pd
 
 # Initialization
 def new_agent(agent_type: str, location: Tuple[int, int],

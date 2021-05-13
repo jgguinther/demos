@@ -1,5 +1,5 @@
-from .parts.environment import *
-from .parts.agents import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.environment import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.agents import *
 
 partial_state_update_block = [
     {
@@ -7,7 +7,7 @@ partial_state_update_block = [
         'policies': {
             'grow_food': grow_food
         },
-        'variables': {
+        'states': {
             'sites': update_food
         }
     },
@@ -16,7 +16,7 @@ partial_state_update_block = [
         'policies': {
             'increase_agent_age': digest_and_olden
         },
-        'variables': {
+        'states': {
             'agents': agent_food_age
 
         }
@@ -26,7 +26,7 @@ partial_state_update_block = [
         'policies': {
             'move_agent': move_agents
         },
-        'variables': {
+        'states': {
             'agents': agent_location
 
         }
@@ -37,7 +37,7 @@ partial_state_update_block = [
             'reproduce_agents': reproduce_agents
 
         },
-        'variables': {
+        'states': {
             'agents': agent_create
 
         }
@@ -47,7 +47,7 @@ partial_state_update_block = [
         'policies': {
             'feed_prey': feed_prey
         },
-        'variables': {
+        'states': {
             'agents': agent_food,
             'sites': site_food
         }
@@ -57,7 +57,7 @@ partial_state_update_block = [
         'policies': {
             'hunt_prey': hunt_prey
         },
-        'variables': {
+        'states': {
             'agents': agent_food
         }
     },
@@ -66,7 +66,7 @@ partial_state_update_block = [
         'policies': {
             'natural_death': natural_death
         },
-        'variables': {
+        'states': {
             'agents': agent_remove
         }
     }
