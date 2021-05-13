@@ -33,3 +33,4 @@ six==1.15.0
 tabulate==0.8.7
 toml==0.10.2
 xarray==0.16.0
+setuptools==56.2.0

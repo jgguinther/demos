@@ -10,6 +10,7 @@
 *.csv
 monkeytype.sqlite3
 venv
+build.sh
 
 __pycache__
 Pipfile
