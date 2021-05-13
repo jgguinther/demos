@@ -1,6 +1,6 @@
 # Dependences
-from .parts.utils import *
-from .sys_params import initial_values
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.utils import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model.sys_params import initial_values
 
 
 ## Initial state object

@@ -1,9 +1,9 @@
 import pandas as pd
-from .parts.utils import * 
-from . import config
-from .config import exp
-from cadCAD.engine import ExecutionMode, ExecutionContext,Executor
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.utils import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model import config
+from cadCAD.engine import ExecutionMode, ExecutionContext, Executor
 
+exp = config.exp
 def run():
     '''
     Definition:

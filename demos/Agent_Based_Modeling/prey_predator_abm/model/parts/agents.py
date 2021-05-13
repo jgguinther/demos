@@ -1,4 +1,4 @@
-from .utils import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.utils import *
 import random
 from uuid import uuid4
 

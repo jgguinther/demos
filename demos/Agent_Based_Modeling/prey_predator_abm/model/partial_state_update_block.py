@@ -1,5 +1,5 @@
-from .parts.environment import *
-from .parts.agents import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.environment import *
+from demos.Agent_Based_Modeling.prey_predator_abm.model.parts.agents import *
 
 partial_state_update_block = [
     {
