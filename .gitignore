@@ -16,5 +16,6 @@ Pipfile
 Pipfile.lock
 notebooks
 build
+pkg.egg-info
 
 *.pickle
