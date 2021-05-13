@@ -8,6 +8,7 @@
 .eggs
 *.egg-info
 *.csv
+*.ipynb_checkpoints
 monkeytype.sqlite3
 
 build
