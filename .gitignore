@@ -8,7 +8,12 @@
 .eggs
 *.egg-info
 *.csv
+*.ipynb_checkpoints
 monkeytype.sqlite3
+
+build
+build.sh
+venv
 
 __pycache__
 Pipfile
