@@ -1,5 +1,4 @@
-from .parts.seird_model import *
-
+from demos.System_Dynamics.Compartment_Models.seird.model.parts.seird_model import *
 
 partial_state_update_block = [
     {
@@ -9,7 +8,7 @@ partial_state_update_block = [
             'recovered_growth': p_recovered_growth,
             'dead_growth': p_dead_growth
         },
-        'variables': {
+        'states': {
             'susceptible': s_susceptible_population,
             'exposed': s_exposed_population,
             'infected': s_infected_population,
