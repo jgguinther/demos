@@ -11,11 +11,7 @@
 *.ipynb_checkpoints
 monkeytype.sqlite3
 
-build
-build.sh
-pkg.egg-info
 venv
-
 __pycache__
 Pipfile
 Pipfile.lock
