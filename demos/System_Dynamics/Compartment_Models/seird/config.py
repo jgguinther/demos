@@ -18,7 +18,7 @@ sim_config = config_sim (
 
 exp = Experiment()
 
-exp.append_configs(
+exp.append_model(
     model_id="sys_model",
     sim_configs=sim_config,
     initial_state=genesis_states,
