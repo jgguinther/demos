@@ -34,13 +34,6 @@ exp.append_model(
 
 
 exp.append_model(
-    model_id="sys_model_2",
-    sim_configs=sim_config,
-    initial_state=genesis_states,
-    partial_state_update_blocks=partial_state_update_block
-)
-
-exp.append_model(
     model_id="sys_model_3",
     sim_configs=sim_config,
     initial_state=genesis_states,
